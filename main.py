@@ -9,9 +9,10 @@ from github import Github, Repository
 
 
 if __name__ == '__main__':
-    waka = Wakatime('waka_d7df8f9f-c811-4940-a658-74b38f5c31e1')
+    # waka = Wakatime('waka_d7df8f9f-c811-4940-a658-74b38f5c31e1')
+    waka = Wakatime(getenv('WAKATIME_API_KEY'))
     editors = waka.user_stats()
-    zxc = GitHubManager(token='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')
+    zxc = GitHubManager(token=getenv('GH_TOKEN'))
     data = ReadmeEditor(zxc, waka)
     data.generate_data()
     data.save_changes()
