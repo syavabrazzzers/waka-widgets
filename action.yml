@@ -14,3 +14,4 @@ inputs:
 
 runs:
   using: 'docker'
+  image: .
