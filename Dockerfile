@@ -15,4 +15,4 @@ RUN pip3 install -r requirements.txt
 RUN git config --global user.name "readme-bot"
 RUN git config --global user.email "82648291+github-actions[bot]@users.noreply.github.com"
 
-CMD ["python3", "main.py"]
+CMD ["python3", "/code/main.py"]
