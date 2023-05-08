@@ -16,6 +16,6 @@ description: 'test'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-#  args:
-#    - ${{ inputs.GH_TOKEN }}
-#    - ${{ inputs.WAKATIME_API_KEY }}
+  args:
+    - ${{ inputs.GH_TOKEN }}
+    - ${{ inputs.WAKATIME_API_KEY }}
