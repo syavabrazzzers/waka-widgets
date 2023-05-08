@@ -10,7 +10,7 @@ from github import Github, Repository
 
 if __name__ == '__main__':
     # waka = Wakatime('waka_d7df8f9f-c811-4940-a658-74b38f5c31e1')
-    print(environ['INPUT_WAKATIME_API_KEY'])
+    print(environ)
     waka = Wakatime(environ['INPUT_WAKATIME_API_KEY'])
     editors = waka.user_stats()
     zxc = GitHubManager(token=environ['INPUT_GH_TOKEN'])
