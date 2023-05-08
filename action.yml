@@ -11,10 +11,11 @@ inputs:
   WAKATIME_API_KEY:
     description: 'Your Wakatime API Key'
     required: true
+    default: 'abobus1'
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.GH_TOKEN }}
-    - ${{ inputs.WAKATIME_API_KEY }}
+#  args:
+#    - ${{ inputs.GH_TOKEN }}
+#    - ${{ inputs.WAKATIME_API_KEY }}
