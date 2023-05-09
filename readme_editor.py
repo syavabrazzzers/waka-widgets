@@ -1,8 +1,7 @@
-import os
 import re
 from datetime import timedelta
 from math import floor
-
+from os import environ
 from gh import GitHubManager
 from pathlib import Path
 
@@ -26,6 +25,7 @@ class ReadmeEditor:
         content = ''
         blocks = self.blocks.split(',')
         print(blocks)
+        print(environ['GITHUB_REPOSITORY'])
 
         for j in blocks:
             content += f'## {" ".join(j.split("_")).capitalize()} used in the last week\n'
