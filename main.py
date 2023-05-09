@@ -1,16 +1,11 @@
-from os import getenv, environ
-from os.path import join
+from os import environ
 
 from gh import GitHubManager
 from readme_editor import ReadmeEditor
 from waka import Wakatime
-from git import Repo
-from github import Github, Repository
 
 
 if __name__ == '__main__':
-    # waka = Wakatime('waka_d7df8f9f-c811-4940-a658-74b38f5c31e1')
-    print(environ)
     waka = Wakatime(environ['INPUT_WAKATIME_API_KEY'])
     editors = waka.user_stats()
     zxc = GitHubManager(token=environ['INPUT_GH_TOKEN'])
@@ -18,9 +13,4 @@ if __name__ == '__main__':
     data.generate_data()
     data.save_changes()
     zxc.commit()
-    # print(data.get_content())
-    # with open("repo/README.md", "a") as myfile:
-    #     myfile.write("appended text")
-    # zxc.commit()
-    # print(editors['data'])
 
