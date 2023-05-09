@@ -25,11 +25,12 @@ class ReadmeEditor:
         content = ''
 
         for j in self.blocks:
-            data = self.wakatime.user_stats()['data'][j]
+            data = self.wakatime.user_stats()['data']
             print(data)
             if not data:
                 break
             try:
+                data = data[j]
                 content += f'## {" ".join(j.split("_")).capitalize()} used in the last week\n'
                 content += '```text\n'
                 for i in data:
