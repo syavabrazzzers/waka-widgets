@@ -26,6 +26,7 @@ class ReadmeEditor:
 
         for j in self.blocks:
             data = self.wakatime.user_stats()['data'][j]
+            print(data)
             if not data:
                 break
             try:
