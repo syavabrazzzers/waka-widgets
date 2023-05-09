@@ -15,7 +15,7 @@ class ReadmeEditor:
     def __init__(self, manager: GitHubManager, wakatime: Wakatime):
         self.manager = manager
         self.wakatime = wakatime
-        self.blocks = getenv('INPUT_BLOCKS', 'languages')
+        self.blocks = getenv('INPUT_BLOCKS', 'languages').split(',')
         self.content = ''
 
     def asd(self):
@@ -23,23 +23,23 @@ class ReadmeEditor:
 
     def generate_data(self):
         content = ''
-        blocks = self.blocks.split(',')
-        print(blocks)
-        print(environ['GITHUB_REPOSITORY'])
 
-        for j in blocks:
-            content += f'## {" ".join(j.split("_")).capitalize()} used in the last week\n'
-            content += '``` text\n'
-            os = self.wakatime.user_stats()['data'][j]
-            for i in os:
-                block_count = floor(20*i['percent']/100)
-                bar = '█' * (block_count if block_count > 0 else 1)
-                content += f'{i["name"]}: ' + \
-                           (' '*(20-len(i['name']))) + bar + \
-                           '░' * (20-len(bar)) + ' ' + \
-                           str(timedelta(seconds=floor(i['total_seconds']))) + \
-                           f' {i["percent"]}%' + '\n'
-            content += '```\n'
+        for j in self.blocks:
+            try:
+                content += f'## {" ".join(j.split("_")).capitalize()} used in the last week\n'
+                content += '``` text\n'
+                os = self.wakatime.user_stats()['data'][j]
+                for i in os:
+                    block_count = floor(20 * i['percent'] / 100)
+                    bar = '█' * (block_count if block_count > 0 else 1)
+                    content += f'{i["name"]}: ' + \
+                               (' ' * (20 - len(i['name']))) + bar + \
+                               '░' * (20 - len(bar)) + ' ' + \
+                               str(timedelta(seconds=floor(i['total_seconds']))) + \
+                               f' {i["percent"]}%' + '\n'
+                content += '```\n'
+            except:
+                print(f'Block {j} is not allowed')
         self.content += content
 
     def get_content(self):

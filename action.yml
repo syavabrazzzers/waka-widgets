@@ -16,10 +16,6 @@ inputs:
     required: false
     default: 'languages'
 
-  USAGE_REPO:
-    description: 'Repository for usage wakatime-widget'
-    required: false
-    default: ${github.user}
 
 runs:
   using: 'docker'

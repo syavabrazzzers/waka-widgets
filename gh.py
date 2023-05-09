@@ -1,3 +1,4 @@
+from os import environ
 from shutil import rmtree
 
 from git import Repo, Actor
@@ -13,7 +14,7 @@ class GitHubManager:
         self.github = Github(token)
         self.user = self.github.get_user()
         rmtree('repo', ignore_errors=True)
-        self.repo = Repo.clone_from(f"https://{token}@github.com/{self.user.login}/{self.user.login}.git", 'repo')
+        self.repo = Repo.clone_from(f"https://{token}@github.com/{environ['GITHUB_REPOSITORY']}.git", 'repo')
         self.remote = self.github.get_repo(f'{self.user.login}/{self.user.login}')
 
     def commit(self):
