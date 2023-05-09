@@ -25,11 +25,13 @@ class ReadmeEditor:
         content = ''
 
         for j in self.blocks:
+            data = self.wakatime.user_stats()['data'][j]
+            if not data:
+                break
             try:
                 content += f'## {" ".join(j.split("_")).capitalize()} used in the last week\n'
-                content += '``` text\n'
-                os = self.wakatime.user_stats()['data'][j]
-                for i in os:
+                content += '```text\n'
+                for i in data:
                     block_count = floor(20 * i['percent'] / 100)
                     bar = '█' * (block_count if block_count > 0 else 1)
                     content += f'{i["name"]}: ' + \
