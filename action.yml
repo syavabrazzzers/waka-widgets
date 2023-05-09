@@ -11,6 +11,16 @@ inputs:
     description: 'Your Wakatime API Key'
     required: true
 
+  BLOCKS:
+    description: 'Wakatime stat blocks'
+    required: false
+    default: 'languages'
+
+  USAGE_REPO:
+    description: 'Repository for usage wakatime-widget'
+    required: false
+    default: ${github.user}
+
 runs:
   using: 'docker'
   image: 'Dockerfile'

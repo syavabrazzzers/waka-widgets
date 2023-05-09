@@ -1,3 +1,4 @@
+import os
 import re
 from datetime import timedelta
 from math import floor
@@ -15,7 +16,7 @@ class ReadmeEditor:
     def __init__(self, manager: GitHubManager, wakatime: Wakatime):
         self.manager = manager
         self.wakatime = wakatime
-        self.blocks = Path('repo/waka_blocks.txt').read_text().split('\n')
+        self.blocks = os.getenv('INPUT_BLOCKS', 'languages')
         self.content = ''
 
     def asd(self):
@@ -23,7 +24,8 @@ class ReadmeEditor:
 
     def generate_data(self):
         content = ''
-        blocks = ['editors', 'languages']
+        blocks = self.blocks.split(',')
+        print(blocks)
 
         for j in blocks:
             content += f'## {" ".join(j.split("_")).capitalize()} used in the last week\n'
