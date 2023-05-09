@@ -1,7 +1,7 @@
 import re
 from datetime import timedelta
 from math import floor
-from os import environ
+from os import environ, getenv
 from gh import GitHubManager
 from pathlib import Path
 
@@ -15,7 +15,7 @@ class ReadmeEditor:
     def __init__(self, manager: GitHubManager, wakatime: Wakatime):
         self.manager = manager
         self.wakatime = wakatime
-        self.blocks = os.getenv('INPUT_BLOCKS', 'languages')
+        self.blocks = getenv('INPUT_BLOCKS', 'languages')
         self.content = ''
 
     def asd(self):
