@@ -23,10 +23,7 @@ class ReadmeEditor:
 
     def generate_data(self):
         content = ''
-        # if 'os' in self.blocks:
         blocks = ['editors', 'languages']
-        # os = self.wakatime.user_stats()['data']['editors']
-        # print(os)
 
         for j in blocks:
             content += f'## {" ".join(j.split("_")).capitalize()} used in the last week\n'
