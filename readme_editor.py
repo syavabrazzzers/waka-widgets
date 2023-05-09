@@ -28,6 +28,7 @@ class ReadmeEditor:
             data = self.wakatime.user_stats()['data']
             print(data)
             if not data:
+                content = 'Your metrics empty now'
                 break
             try:
                 data = data[j]
