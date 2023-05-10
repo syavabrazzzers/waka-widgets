@@ -25,26 +25,21 @@ class ReadmeEditor:
         content = ''
 
         for j in self.blocks:
-            data = self.wakatime.user_stats()['data']
-            print(data)
-            if not data:
-                content = 'Your metrics empty now'
-                break
             try:
-                data = data[j]
+                data = self.wakatime.user_stats()['data'][j]
                 content += f'## {" ".join(j.split("_")).capitalize()} used in the last week\n'
                 content += '```text\n'
                 for i in data:
                     block_count = floor(20 * i['percent'] / 100)
                     bar = '█' * (block_count if block_count > 0 else 1)
                     content += f'{i["name"]}: ' + \
-                               (' ' * (20 - len(i['name']))) + bar + \
-                               '░' * (20 - len(bar)) + ' ' + \
-                               str(timedelta(seconds=floor(i['total_seconds']))) + \
-                               f' {i["percent"]}%' + '\n'
+                                (' ' * (20 - len(i['name']))) + bar + \
+                                '░' * (20 - len(bar)) + ' ' + \
+                                str(timedelta(seconds=floor(i['total_seconds']))) + \
+                                f' {i["percent"]}%' + '\n'
                 content += '```\n'
-            except:
-                print(f'Block {j} is not allowed')
+            except KeyError:
+                content = f'Block {j} is not allowed'
         self.content += content
 
     def get_content(self):
